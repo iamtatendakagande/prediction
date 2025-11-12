@@ -13,7 +13,7 @@ class predict:
         try:
             preprocessed_input = predict.preprocess_text(input)
             # load the model from disk
-            model = pickle.load(open("./machine/pickled/HarareRentNeuralNetworkModel.pkl", 'rb'))
+            model = pickle.load(open("./machine/serialized/NeuralNetworkModel.pkl", 'rb'))
             print("Processed text:",preprocessed_input)
             
             output = model.predict(preprocessed_input)[0,0]
@@ -22,7 +22,7 @@ class predict:
                 print("An error occurred:", e)
     
     def preprocess_text(input):
-        data = pd.read_csv('./machine/data/harare-metropolian-updated.csv', keep_default_na=False)
+        data = pd.read_csv('./machine/data/data-updated.csv', keep_default_na=False)
 
         data = data.astype({'rooms': 'int','bedroom': 'int', 'toilets':'int', 'ensuite':'int', 'carport':'int', 'cottage':'int'})
         input = input.astype({'rooms': 'int','bedroom': 'int', 'toilets':'int', 'ensuite':'int', 'carport':'int', 'cottage':'int'})
@@ -51,7 +51,7 @@ class predict:
         print(f'Features of new house:\n{single_house}')
 
         # load the scaler from disk
-        scaler  = pickle.load(open("./machine/pickled/HarareRentNeuralNetworkModelScaler.pkl", 'rb'))
+        scaler  = pickle.load(open("./machine/serialized/NeuralNetworkModelScaler.pkl", 'rb'))
         # reshape the numpy array and scale the features
         single_house = scaler.transform(single_house.values.reshape(-1, 20))
         print("User input size: ", single_house.shape)

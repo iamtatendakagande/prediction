@@ -1,0 +1,10 @@
+flask
+tensorflow
+keras
+scikit-learn
+psycopg2-binary
+python-dotenv
+seaborn
+matplotlib
+pandas
+numpy
