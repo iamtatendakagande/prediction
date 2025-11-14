@@ -1,6 +1,5 @@
 import pandas as pd
-
-# serialize the model
+from tensorflow.keras.models import load_model 
 import pickle
 
 # Create a machine learning model.
@@ -8,18 +7,17 @@ class predict:
     def _init_(self, features): 
         self.features = features
         print(self.features)
-
+    
     def userInput(input):
         try:
             preprocessed_input = predict.preprocess_text(input)
-            # load the model from disk
-            model = pickle.load(open("./machine/serialized/NeuralNetworkModel.pkl", 'rb'))
+            model = load_model("./machine/serialized/NeuralNetworkModel.keras")
             print("Processed text:",preprocessed_input)
-            
             output = model.predict(preprocessed_input)[0,0]
             return output     
         except Exception as e:
                 print("An error occurred:", e)
+
     
     def preprocess_text(input):
         data = pd.read_csv('./machine/data/data-updated.csv', keep_default_na=False)

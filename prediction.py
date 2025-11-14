@@ -32,9 +32,9 @@ def prediction():
 @app.route("/download")
 def download():
     return send_file(
-        "./static/downloads/prediction-template.zip",
+        "./static/downloads/model-input-data.zip",
         mimetype="application/zip",
-        download_name="prediction-template.zip",
+        download_name="model-input-data-template.zip",
         as_attachment=True,) 
               
 if __name__ == '__main__':
