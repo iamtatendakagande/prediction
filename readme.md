@@ -4,7 +4,7 @@
 
 * The core models are saved in the `./machine/model` directory.
 * Made by Tatenda Edmore Kagande.
-* For more information, connect with me on [LinkedIn](YOUR_LINKEDIN_URL_HERE).
+* For more information, connect with me on [LinkedIn](https://www.linkedin.com/in/iamtatendakagande/).
 
 ---
 
