@@ -21,14 +21,14 @@ To run this application, you will need the following installed:
 
 Follow these steps to get your development environment set up.
 
-### **Step 1: **Clone the Repository:**
+### **Step 1: Clone the Repository:**
 
 ```bash
 git clone [https://github.com/iamtatendakagande/prediction.git](https://github.com/iamtatendakagande/prediction.git)
 cd prediction
  ```
 
-### **Step 2: **Create and activate a virtual environment:**
+### **Step 2: Create and activate a virtual environment:**
     (On Mac/Linux)
     ```bash
     python3 -m venv .venv
@@ -40,12 +40,12 @@ cd prediction
     .venv\Scripts\activate
     ```
 
-### **Step 3: **Install dependencies:**
+### **Step 3: Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-### **Step 4: **Configure Environment Variables:**
+### **Step 4: Configure Environment Variables:**
     Copy the example `.env.example` file to a new `.env` file.
     ```bash
     cp .env.example .env
