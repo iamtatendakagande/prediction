@@ -1,67 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="chichi">
+    <meta name="description" content="prediction">
     <meta name="author" content="T8">
     <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static',filename='pics/#') }}">
-    <head>
-             <!-- Bootstrap -->
-            <link type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}" defer rel="stylesheet">
-            <!-- Bootstrap responsive -->
-            <link type= "text/css" href= "{{ url_for('static',filename='css/bootstrap-responsive.min.css') }}" defer rel="stylesheet">   
-            <!-- Fonts -->
-            <link type= "text/css" href= "{{ url_for('static',filename='font-awesome/./css/font-awesome.min.css') }}" defer rel="stylesheet">
-            <!-- Custom --> 
-            <link type= "text/css" href= "{{ url_for('static',filename='css/prediction.css') }}" defer rel="stylesheet">          
-        <title>prediction</title>
-
+    <link rel="stylesheet" href="{{url_for('static',filename='src/output.css')}}">
+    
+    <title>prediction</title>
 </head>
 
-<body>
-    <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
 
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        
-                         <a class="navbar-brand" href="/">predict</a>
-                         
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="collapse">
-                            <ul class="nav navbar-nav">
-                                
-                                <li><a href="/prediction">prediction</a></li>
+<body class="bg-cover bg-center bg-no-repeat bg-fixed pt-[50px] leading-[0.8] min-h-screen" 
+      style="background-image: url(../static/pics/back.png)">
+     <header>
+        <nav class="fixed top-0 w-full z-50 border-0 text-white p-4 shadow-md" 
+            style="background: url(../static/pics/header-footer.png)">
 
-                            </ul>   
-        
-                    </div>
-                   
+            <div class="container mx-auto flex items-center justify-between flex-wrap">
+
+                <div class="flex items-center flex-shrink-0 mr-6">
+                    <a class="text-xl tracking-tight" href="/">predict</a>
+                </div>
+
+                <div class="block lg:hidden">
+                    <button id="nav-toggle-btn" class="flex items-center px-3 py-2 border rounded text-gray-300 border-gray-400 hover:text-white hover:border-white">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-3z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block" id="nav-content">
+                    <ul class="lg:flex-grow">
+                        <li>
+                            <a href="/prediction" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4">
+                                prediction
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-            </nav>   
+        </nav>
     </header>
 
+    <div class="w-full lg:w-2/3 lg:mx-auto">    
+        {% block body %}
 
-
-    {% block body %}
-
-
-    {% endblock %}
-
-    <!-- jQuery -->
-<script type="text/javascript" src= "{{ url_for('static',filename='js/jquery.js') }}" defer></script>
-<!-- Bootstrap -->
-<script type="text/javascript" src= "{{ url_for('static',filename='js/bootstrap.min.js') }}" defer></script>
-<!--Main JavaScript -->
-<script type="text/javascript" src= "{{ url_for('static',filename='js/prediction.js') }}" defer></script>
+        {% endblock %}
+    </div>
+  
+    <script>
+        document.getElementById('nav-toggle-btn').addEventListener('click', function() {
+            document.getElementById('nav-content').classList.toggle('hidden');
+        });
+    </script>
 </body>
+</html>

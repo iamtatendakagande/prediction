@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect, url_for, request, session, send_file, flash
 import pandas as pd
+import os
 from machine.source.userInputModel import predict
 
 app = Flask(__name__, template_folder='./public')
 app.config['UPLOAD_FOLDER'] =  'static/download'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or os.urandom(24)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -16,15 +18,17 @@ def prediction():
         if file.filename != '':
             try:
                 input = pd.read_csv(file)
-                print(input.iloc[0, 0])#index 1
-                print(input.iloc[0, 1])#question 1
+                print(input.iloc[0, 0])
+                print(input.iloc[0, 1])
                 output = predict.userInput(input)
-                return render_template('prediction/output.html', price = output)
+                flash(f'✅ The expected rent is: ${output:.2f}', 'success') 
+                return render_template('prediction/prediction.html')
+            
             except Exception as e:
-                print("An error occurred:", e)
+                flash(f"❌ An error occurred while processing the file: {e}", 'error')
                 return render_template('prediction/prediction.html')
         else:
-            print("Please attach soemething")
+            flash("⚠️ Please attach a file before uploading.", 'warning')
             return render_template('prediction/prediction.html') 
     else:
         return render_template('prediction/prediction.html')

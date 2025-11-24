@@ -1,35 +1,46 @@
 {% extends 'partials/user.html' %}
 
 {% block body %}
-<div class="col-xs-12 col-sm-12 col-lg-4 col-lg-offset-4">
-        <form class="main-form" id="main-form" method="POST" action="/prediction" role="form" enctype="multipart/form-data">
-                <div class="form-group">
-                        <label for="file">prediction:</label>
-                        <input id="file" type="file" class="form-control @error('file') is-invalid @enderror" name="file" autofocus>
-                </div>
+    <form method="POST" action="/prediction" role="form" enctype="multipart/form-data" class="mt-24 mx-auto max-w-lg">
+        <div class="flex flex-col sm:flex-row items-center justify-center my-4"> 
+            <label for="file-upload" class="font-semibold text-gray-700 mr-4 whitespace-nowrap">UPLOAD THE FILE:</label>
+            <input id="file-upload" name="file" type="file" 
+       class="block w-1/2 p-3 
+              bg-white/10
+              backdrop-blur-sm 
+              border border-white/30 
+              text-gray-900 placeholder-gray-600
+              rounded-lg shadow-inner
+              focus:ring-2 focus:ring-blue-300 focus:outline-none 
+              transition duration-300 ease-in-out"
+            />  
+        </div>
 
-                <div class="form-group">
-                        <div class="row-sm-offset-4-sm-7">
-                                <button type="submit" id="submit" class="btn btn-wide btn-primary">
-                                        UPLOAD
-                                </button>
+        <div class="flex flex-col sm:flex-row items-center justify-center my-4 space-y-4 sm:space-y-0 sm:space-x-4">
+            <button type="submit" id="submit" class="bg-indigo-600 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
+                UPLOAD
+            </button>
+            
+            <a href="/download" id="download" class="bg-yellow-600 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">
+                DOWNLOAD TEMPLATE
+            </a>
+            </div>
+    </form>
 
-                                <a type="submit" id="submit" class="btn btn-wide btn-warning" 
-                                href="/download">DOWNLOAD TEMPLATE</a>
-                        </div>
-                </div>
-        </form>
-
-        {% with messages = get_flashed_messages(with_categories=True) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="dismissable-panel output">
-                    {% for category, message in messages %}
-                            <p>{{ message }}</p>
-                    {% endfor %}
-                    <span class="dismiss-button">&times;</span>
+            <div class="flash-messages-container mx-auto max-w-lg mt-4"> 
+                {% for category, message in messages %}
+                <div class="p-3 mb-2 rounded-md 
+                    {% if category == 'error' %} bg-red-100 text-red-800 border border-red-400
+                    {% elif category == 'success' %} bg-green-100 text-green-800 border border-green-400
+                    {% elif category == 'warning' %} bg-yellow-100 text-yellow-800 border border-yellow-400
+                    {% else %} bg-blue-100 text-blue-800 border border-blue-400
+                    {% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
             </div>
         {% endif %}
-        {% endwith %}
-
-</div>
+    {% endwith %}
 {% endblock %}
